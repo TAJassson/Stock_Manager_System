@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:stock_manager_system"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
+        ResizeMode="NoResize"  
+        WindowStartupLocation="CenterScreen"
+        Title="Login" Height="250" Width="600">
     <Grid>
         
     </Grid>
