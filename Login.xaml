@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"  
         WindowStartupLocation="CenterScreen"
-        Title="Login" Height="250" Width="600">
+        Title="Login" Height="250" Width="500">
     <Grid>
-        
+        <TextBlock HorizontalAlignment="Left" Margin="176,101,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
