@@ -8,4 +8,31 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="CMT_c.png" />
+    <None Remove="Exit.png" />
+    <None Remove="login.png" />
+    <None Remove="Reg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="CMT_c.png" />
+    <Resource Include="Exit.png" />
+    <Resource Include="login.png" />
+    <Resource Include="Reg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="LoadingSQL.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Register.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClientSetting>
+	<Database>
+		<SQLType>SQLite</SQLType>
+		<FileNamedb>db</FileNamedb>
+		<ConnectIPAddress>0</ConnectIPAddress>
+		<ConnectionString>C:\Database\master.db</ConnectionString>
+	</Database>
+	<PasswordProtectSetting>
+		<PasswordProtection>Enable</PasswordProtection>
+		<PasswordProtectType>SHA512</PasswordProtectType>
+		<MD5FileProtect>Disable</MD5FileProtect>
+		<FileProtectType>Hash</FileProtectType>
+		<DailyEncryptDatabase>Disable</DailyEncryptDatabase>
+		<AllowLoadSQLOnLocalHost>0</AllowLoadSQLOnLocalHost>
+	</PasswordProtectSetting>
+	<DateTimeSetting>
+		<loginTime>HH:mm:ss</loginTime>
+		<loginDate>yyyy-MM-dd</loginDate>
+		<EncodingDateTime>UTF-8</EncodingDateTime>
+	</DateTimeSetting>
+	<Domain>
+		<GetUserConnectionDomain>Disable</GetUserConnectionDomain>
+	</Domain>
+	<METADATA>
+		<LoadMetadata>Disable</LoadMetadata>
+		<MetadataType>bin</MetadataType>
+	</METADATA>
+</ClientSetting>
