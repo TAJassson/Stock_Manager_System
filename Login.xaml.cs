@@ -129,13 +129,13 @@ namespace stock_manager_system
                             else
                             {
                                 // 3. 如果 User 記錄不存在，創建一個新的記錄
-                                string insertSql = "INSERT INTO Login (FirstLogin, LatestLogin, User) VALUES (@firstLogin, @latestLogin, @user)";
+                                string insertSql = "INSERT INTO Login (FirstLogin, LatestLogin, Username) VALUES (@firstLogin, @latestLogin, @username)";
                                 using (SQLiteCommand insertCommand = new SQLiteCommand(insertSql, connection))
                                 {
                                     DateTime now = DateTime.Now;
                                     insertCommand.Parameters.AddWithValue("@firstLogin", now.ToString("yyyy-MM-dd HH:mm:ss"));
                                     insertCommand.Parameters.AddWithValue("@latestLogin", now.ToString("yyyy-MM-dd HH:mm:ss"));
-                                    insertCommand.Parameters.AddWithValue("@user", username);
+                                    insertCommand.Parameters.AddWithValue("@username", username);
                                     insertCommand.ExecuteNonQuery();
                                 }
                             }

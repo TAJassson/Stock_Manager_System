@@ -40,8 +40,10 @@
         <TextBlock HorizontalAlignment="Left" Margin="38,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="84" FontSize="15"><Run Text="Username"/><Run Language="zh-tw" Text=":"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="38,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="84" FontSize="15"><Run Language="zh-tw" Text="Password:"/></TextBlock>
         <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="132,266,0,0" VerticalAlignment="Top" Width="370" Height="34"/>
-        <Image x:Name="btn_Reg" HorizontalAlignment="Left" Height="58" Margin="127,321,0,0" VerticalAlignment="Top" Width="100" Source="/Reg.png" MouseDown="RegisterDown"/>
-        <Image x:Name="btn_Exit" Height="58" Margin="373,321,127,0" VerticalAlignment="Top" Source="/Exit.png" MouseDown="Exit"/>
+        <Image x:Name="btn_Reg" HorizontalAlignment="Left" Height="58" Margin="127,341,0,0" VerticalAlignment="Top" Width="100" Source="/Reg.png" MouseDown="RegisterDown"/>
+        <Image x:Name="btn_Exit" Height="58" Margin="373,341,127,0" VerticalAlignment="Top" Source="/Exit.png" MouseDown="Exit"/>
+        <TextBlock x:Name="Error_Message" HorizontalAlignment="Center" Margin="0,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="600" TextAlignment="Center" Foreground="Red" Text=""/>
+
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#FF4BA8FF" Offset="0"/>

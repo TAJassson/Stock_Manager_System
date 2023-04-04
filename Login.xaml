@@ -26,7 +26,7 @@
         <Image Height="71" Margin="179,46,179,0" VerticalAlignment="Top" Source="/CMT_c.png"/>
         <Image x:Name="btn_login" Source="/login.png" Margin="132,251,373,44" MouseDown="login_process"/>
         <Image x:Name="btn_exit" Source="/Exit.png" Margin="373,251,132,44" MouseDown="ExitApp"/>
-        <TextBlock x:Name="Register" HorizontalAlignment="Center" Margin="0,321,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="256" TextAlignment="Center" Text="Click here to register" MouseDown="register"/>
+        <TextBlock x:Name="Register" HorizontalAlignment="Center" Margin="0,321,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="256" TextAlignment="Center" Text="Click here to register" MouseDown="register" TextDecorations="Underline"/>
         <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="132,204,0,0" VerticalAlignment="Top" Width="370" Height="26"/>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
