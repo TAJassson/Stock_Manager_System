@@ -68,18 +68,5 @@ namespace stock_manager_system
                 Close();
             }
         }
-        //Password protection
-        private void SHA512Encrypt(string data)
-        {
-            using var sha512 = SHA512.Create();
-            byte[] bytes = sha512.ComputeHash(Encoding.UTF8.GetBytes(data));
-            var sb = new StringBuilder();
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                sb.Append(bytes[i].ToString("x2"));
-            }
-            data = sb.ToString();
-        }
-        //
     }
 }

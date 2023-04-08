@@ -13,14 +13,14 @@
         <WindowChrome CornerRadius="10"/>
     </WindowChrome.WindowChrome>
     <Grid>
-        <RichTextBox x:Name="Email" Margin="132,120,98,244" FontSize="15">
+        <RichTextBox x:Name="Email" Margin="132,120,98,244" FontSize="15" Background="White" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}" Foreground="Black">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox x:Name="Department" Margin="132,171,98,195" FontSize="15">
+        <RichTextBox x:Name="Department" Margin="132,171,98,195" FontSize="15" Background="White" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
@@ -30,7 +30,7 @@
         <Image Height="71" Margin="179,46,179,0" VerticalAlignment="Top" Source="/CMT_c.png"/>
         <TextBlock HorizontalAlignment="Left" Margin="38,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="61" FontSize="15"><Run Language="zh-tw" Text="Email:"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="38,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="84" FontSize="15"><Run Language="zh-tw" Text="Department"/><Run Text=":"/></TextBlock>
-        <RichTextBox x:Name="Username" Margin="132,219,98,147" FontSize="15">
+        <RichTextBox x:Name="Username" Margin="132,219,98,147" FontSize="15" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
@@ -39,7 +39,7 @@
         </RichTextBox>
         <TextBlock HorizontalAlignment="Left" Margin="38,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="84" FontSize="15"><Run Text="Username"/><Run Language="zh-tw" Text=":"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="38,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="84" FontSize="15"><Run Language="zh-tw" Text="Password:"/></TextBlock>
-        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="132,266,0,0" VerticalAlignment="Top" Width="370" Height="34"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="132,266,0,0" VerticalAlignment="Top" Width="370" Height="34" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}"/>
         <Image x:Name="btn_Reg" HorizontalAlignment="Left" Height="58" Margin="127,341,0,0" VerticalAlignment="Top" Width="100" Source="/Reg.png" MouseDown="RegisterDown"/>
         <Image x:Name="btn_Exit" Height="58" Margin="373,341,127,0" VerticalAlignment="Top" Source="/Exit.png" MouseDown="Exit"/>
         <TextBlock x:Name="Error_Message" HorizontalAlignment="Center" Margin="0,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="600" TextAlignment="Center" Foreground="Red" Text=""/>

@@ -125,16 +125,29 @@ namespace stock_manager_system
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={connectionString};Version=3;"))
             {
                 connection.Open();
-                string selectSql = "SELECT * FROM Register WHERE Username=@user AND Email=@email";
+                string selectSql = "SELECT * FROM Register WHERE Email=@email";
                 using (SQLiteCommand selectCommand = new SQLiteCommand(selectSql, connection))
                 {
-                    selectCommand.Parameters.AddWithValue("@user", username);
-                    selectCommand.Parameters.AddWithValue("@email", mail);
+                    //  selectCommand.Parameters.AddWithValue("@user", username);
+                    string UsernameSQL = "SELECT * FROM Register WHERE Username=@user";
+                    using (SQLiteCommand selectCommandUsername = new SQLiteCommand(UsernameSQL, connection))
+                    {
+                        selectCommandUsername.Parameters.AddWithValue("@user", username);
+                        using (SQLiteDataReader reader = selectCommandUsername.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                Error_Message.Text = "This Username is already registered! Please use another Username and Email to register the system!";
+                                return;
+                            }
+                        }
+                    }
+                        selectCommand.Parameters.AddWithValue("@email", mail);
                     using (SQLiteDataReader reader = selectCommand.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            Error_Message.Text = "This Email or Username is already registered! Please use another Username and Email to register the system!";
+                            Error_Message.Text = "This Email is already registered! Please use another Username and Email to register the system!";
                         }
                         else
                         {

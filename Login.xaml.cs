@@ -16,7 +16,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Documents;
 using System.Windows.Input;
-
+using System.Reflection;
 namespace stock_manager_system
 {
     /// <summary>
@@ -27,9 +27,11 @@ namespace stock_manager_system
     {
         public Login()
         {
+             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            //BuildVersion.Text = $"App version = {version}";
             InitializeComponent();
             this.Show();
-
+            vermsg.Text = "App Version: v.1.0.0.0 Build 23087 ";
         }
         //Password protection
         static string SHA512Encrypt(string data)
@@ -59,6 +61,11 @@ namespace stock_manager_system
 
 
         private void login_process(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            login_pup();
+        }
+
+        private void login_pup()
         {
             string GetRichTextBlockContent(RichTextBox richTextBlock)
             {
@@ -103,13 +110,13 @@ namespace stock_manager_system
             if (result)
             {
                 //MessageBox.Show("Haha");
-                    MessageBox.Show("Login Suceessful", "SQL Login Manager");
+                MessageBox.Show("Login Suceessful", "SQL Login Manager");
                 using (SQLiteConnection connection = new SQLiteConnection($"Data Source={connectionString};Version=3;"))
                 {
                     connection.Open();
 
                     // 1. 檢查 User 記錄是否存在
-                    string selectSql = "SELECT * FROM Login WHERE User=@user";
+                    string selectSql = "SELECT * FROM Login WHERE Username=@user";
                     using (SQLiteCommand selectCommand = new SQLiteCommand(selectSql, connection))
                     {
                         selectCommand.Parameters.AddWithValue("@user", username);
@@ -118,12 +125,25 @@ namespace stock_manager_system
                             if (reader.Read())
                             {
                                 // 2. 如果 User 記錄已經存在，更新 LatestLoginTime
-                                string updateSql = "UPDATE Login SET LatestLogin=@latestLogin WHERE User=@user";
+                                string updateSql = "UPDATE Login SET LatestLogin=@latestLogin WHERE Username=@user";
                                 using (SQLiteCommand updateCommand = new SQLiteCommand(updateSql, connection))
                                 {
                                     updateCommand.Parameters.AddWithValue("@latestLogin", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                                     updateCommand.Parameters.AddWithValue("@user", username);
                                     updateCommand.ExecuteNonQuery();
+                                }
+                                string UpdateOnlineUser = "SELECT OnlineUser FROM Online WHERE OnlineUser = 1";
+                                using (SQLiteCommand selectCommandOnlineUser = new SQLiteCommand(UpdateOnlineUser, connection))
+                                {
+                                    
+                                    int onlineUser = Convert.ToInt32(selectCommandOnlineUser.ExecuteScalar());
+                                    onlineUser++;
+                                    string updateQuery = "UPDATE Online SET OnlineUser = @onlineUser WHERE OnlineUser = 1";
+                                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                                    {
+                                        updateCommand.Parameters.AddWithValue("@onlineUser", onlineUser + 1);
+                                        updateCommand.ExecuteNonQuery();
+                                    }
                                 }
                             }
                             else
@@ -138,13 +158,25 @@ namespace stock_manager_system
                                     insertCommand.Parameters.AddWithValue("@username", username);
                                     insertCommand.ExecuteNonQuery();
                                 }
+                                string UpdateOnlineUser = "SELECT OnlineUser FROM Online WHERE OnlineUser = 1";
+                                using (SQLiteCommand selectCommandOnlineUser = new SQLiteCommand(UpdateOnlineUser, connection))
+                                {
+                                    int onlineUser = Convert.ToInt32(selectCommandOnlineUser.ExecuteScalar());
+                                    onlineUser++;
+                                    string updateQuery = "UPDATE Online SET OnlineUser = @onlineUser WHERE id = 1";
+                                    using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
+                                    {
+                                       // updateCommand.Parameters.AddWithValue("@onlineUser", onlineUser);
+                                       // updateCommand.ExecuteNonQuery();
+                                    }
+                                }
                             }
                         }
                     }
 
                     connection.Close();
                 }
-                MainWindow main = new MainWindow();
+                MainPages main = new MainPages();
                 main.Show();
                 this.Close();
             }
@@ -192,5 +224,12 @@ namespace stock_manager_system
             this.Close();
         }
 
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                login_pup();
+            }
         }
+    }
 }

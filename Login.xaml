@@ -22,12 +22,12 @@
         </RichTextBox>
         <TextBlock HorizontalAlignment="Left" Margin="45,138,0,0" TextWrapping="Wrap" Text="Account:" VerticalAlignment="Top" Height="17" Width="61" FontSize="15"/>
         <TextBlock HorizontalAlignment="Left" Margin="45,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="69" FontSize="15"><Run Language="zh-tw" Text="Password:"/></TextBlock>
-        <TextBlock x:Name="BuildVersion" HorizontalAlignment="Left" Margin="0,334,0,0" TextWrapping="Wrap" Text="App version:" VerticalAlignment="Top" Width="176"/>
         <Image Height="71" Margin="179,46,179,0" VerticalAlignment="Top" Source="/CMT_c.png"/>
         <Image x:Name="btn_login" Source="/login.png" Margin="132,251,373,44" MouseDown="login_process"/>
         <Image x:Name="btn_exit" Source="/Exit.png" Margin="373,251,132,44" MouseDown="ExitApp"/>
         <TextBlock x:Name="Register" HorizontalAlignment="Center" Margin="0,321,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="256" TextAlignment="Center" Text="Click here to register" MouseDown="register" TextDecorations="Underline"/>
-        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="132,204,0,0" VerticalAlignment="Top" Width="370" Height="26"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="132,204,0,0" VerticalAlignment="Top" Width="370" Height="26" KeyDown="Login_KeyDown"/>
+        <TextBlock x:Name="vermsg" HorizontalAlignment="Left" Margin="0,337,0,0" TextWrapping="Wrap" Text="App version: %s Build %s" VerticalAlignment="Top" Width="180" FontSize="10"/>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#FF4BA8FF" Offset="0"/>
