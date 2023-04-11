@@ -3,8 +3,12 @@
 	<Database>
 		<SQLType>SQLite</SQLType>
 		<FileNamedb>db</FileNamedb>
-		<ConnectIPAddress>0</ConnectIPAddress>
-		<ConnectionString>C:\Database\master.db</ConnectionString>
+		<ConnectSQLToNet>Disable</ConnectSQLToNet>
+		<ConnectIPAddress>0</ConnectIPAddress> //Only work on ConnectSQLToNet
+		<ConnectionString>C:\Database\master.db</ConnectionString> //LoadingSQL
+		<NetworkCredential>Disable</NetworkCredential>
+		<Username>0</Username> //Only work on Enable NetworkCredential
+		<Password>0</Password> //Only work on Enable NetworkCredential
 	</Database>
 	<PasswordProtectSetting>
 		<PasswordProtection>Enable</PasswordProtection>

@@ -13,7 +13,7 @@
         <Image Source="/CMT_c.png" Margin="-4,-4,604,536"/>
         <TextBlock HorizontalAlignment="Left" Margin="779,-9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="21" FontSize="25" TextAlignment="Center" Foreground="#FFFF8181" MouseDown="Exit"><Run Language="zh-tw" Text="x"/></TextBlock>
         <TextBlock HorizontalAlignment="Center" Margin="0,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFE89494" IsEnabled="False" Width="800" Height="3"/>
-        <TextBlock HorizontalAlignment="Left" Margin="198,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="4" Height="428" Background="#FFC3B2F4"/>
+        <TextBlock HorizontalAlignment="Left" Margin="198,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="4" Height="528" Background="#FFC3B2F4"/>
         <Image x:Name="btn_Item" Source="/login.png" Margin="-1,77,605,461" MouseDown="ShowItemSQL"/>
         <DataGrid x:Name="dataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="207,112,10,10" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}"/>
         <TextBox x:Name="searchbox" HorizontalAlignment="Left" Margin="508,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Height="20" GotFocus="cleartext" LostFocus="df_text"/>
