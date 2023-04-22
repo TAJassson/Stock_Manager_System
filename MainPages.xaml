@@ -14,14 +14,44 @@
         <TextBlock HorizontalAlignment="Left" Margin="779,-9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="21" FontSize="25" TextAlignment="Center" Foreground="#FFFF8181" MouseDown="Exit"><Run Language="zh-tw" Text="x"/></TextBlock>
         <TextBlock HorizontalAlignment="Center" Margin="0,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFE89494" IsEnabled="False" Width="800" Height="3"/>
         <TextBlock HorizontalAlignment="Left" Margin="198,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="4" Height="528" Background="#FFC3B2F4"/>
-        <Image x:Name="btn_Item" Source="/login.png" Margin="-1,77,605,461" MouseDown="ShowItemSQL"/>
-        <DataGrid x:Name="dataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="207,112,10,10" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}"/>
-        <TextBox x:Name="searchbox" HorizontalAlignment="Left" Margin="508,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Height="20" GotFocus="cleartext" LostFocus="df_text"/>
-        <Image x:Name="search" Margin="769,86,13,496" Source="/search-icon-transparent-images-vector-15.png"/>
-        <Image x:Name="ReloadSQL" HorizontalAlignment="Left" Height="40" Margin="207,72,0,0" VerticalAlignment="Top" Width="40" Source="/reload-512.png"/>
-        <Image x:Name="SaveSQL" Source="/save-512.png" Margin="270,72,490,488" MouseDown="ModifyData"/>
-        <Image x:Name="ExportCSV" HorizontalAlignment="Left" Height="30" Margin="335,77,0,0" VerticalAlignment="Top" Width="35" Source="/28842.png"/>
-        <Image HorizontalAlignment="Left" Height="27" Margin="773,41,0,0" VerticalAlignment="Top" Width="27" Source="/Minimalist_info_Icon.png"/>
+        
+        <Image x:Name="btn_Item" Source="/stock-management.png" Margin="0,72,602,450" MouseDown="ShowItemSQL"/>
+        <DataGrid x:Name="dataGrid_Item" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="207,112,10,10" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <TextBox x:Name="searchbox_Item" HorizontalAlignment="Left" Margin="508,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Height="20" GotFocus="cleartext_item" LostFocus="df_text" Visibility="Collapsed"/>
+        <Image x:Name="search_Item" Margin="769,86,13,496" Source="/search-icon-transparent-images-vector-15.png" Visibility="Collapsed"/>
+        <Image x:Name="ReloadItemSQL" HorizontalAlignment="Left" Height="40" Margin="207,72,0,0" VerticalAlignment="Top" Width="40" Source="/reload-512.png" Visibility="Collapsed" MouseDown="ReloadItemSQLList"/>
+        <Image x:Name="SaveSQL_Item" Source="/save-512.png" Margin="270,72,490,488" MouseDown="ModifyItemSQLData" Visibility="Collapsed"/>
+        
+        <Image x:Name="ExportCSV" HorizontalAlignment="Left" Height="30" Margin="335,77,0,0" VerticalAlignment="Top" Width="35" Source="/28842.png" Visibility="Collapsed"/>
+        
+        <Image HorizontalAlignment="Left" Height="27" Margin="773,41,0,0" VerticalAlignment="Top" Width="27" Source="/Minimalist_info_Icon.png" MouseDown="Howtouse"/>
+        <TextBlock x:Name="vermsg" HorizontalAlignment="Left" Margin="0,587,0,0" TextWrapping="Wrap" Text="App version: %s Build %s" VerticalAlignment="Top" Width="180" FontSize="10"/>
+        <Image x:Name="btn_punches" Source="/832921-200.png" Margin="0,248,602,274" MouseDown="ShowOrderSQL"/>
+        <TextBox x:Name="searchbox_punches" HorizontalAlignment="Left" Margin="508,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Height="20" GotFocus="cleartext_item" LostFocus="df_text" Visibility="Collapsed"/>
+        <Image x:Name="search_punches" Margin="769,86,13,496" Source="/search-icon-transparent-images-vector-15.png" Visibility="Collapsed"/>
+        <Image x:Name="ReloadpunchesSQL" HorizontalAlignment="Left" Height="40" Margin="207,72,0,0" VerticalAlignment="Top" Width="40" Source="/reload-512.png" Visibility="Collapsed" MouseDown="ReloadItemSQLList"/>
+        <Image x:Name="SaveSQL_punches" Source="/save-512.png" Margin="270,72,490,488" MouseDown="ModifyPunchesSQLData" Visibility="Collapsed"/>
+
+        <Image x:Name="btn_job" Source="/part-time-job.png" Margin="0,336,602,176" MouseDown="ShowJobSQL"/>
+        <TextBox x:Name="searchbox_job" HorizontalAlignment="Left" Margin="508,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Height="20" GotFocus="cleartext_item" LostFocus="df_text" Visibility="Collapsed"/>
+        <Image x:Name="search_job" Margin="769,86,13,496" Source="/search-icon-transparent-images-vector-15.png" Visibility="Collapsed"/>
+        <Image x:Name="ReloadjobSQL" HorizontalAlignment="Left" Height="40" Margin="207,72,0,0" VerticalAlignment="Top" Width="40" Source="/reload-512.png" Visibility="Collapsed" MouseDown="ReloadJobSQLList"/>
+        <Image x:Name="SaveSQL_job" Source="/save-512.png" Margin="270,72,490,488" MouseDown="ModifyJobDBSQLData" Visibility="Collapsed"/>
+        
+       
+        <Image x:Name="btn_stock" Source="/free-warehouse-icon-1073-thumb.png" Margin="0,155,602,357" MouseDown="ShowStockSQL"/>
+        <TextBox x:Name="searchbox_stock" HorizontalAlignment="Left" Margin="508,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Height="20" GotFocus="cleartext_item" LostFocus="df_text" Visibility="Collapsed"/>
+        <Image x:Name="search_stock" Margin="769,86,13,496" Source="/search-icon-transparent-images-vector-15.png" Visibility="Collapsed"/>
+        <Image x:Name="ReloadstockSQL" HorizontalAlignment="Left" Height="40" Margin="207,72,0,0" VerticalAlignment="Top" Width="40" Source="/reload-512.png" Visibility="Collapsed" MouseDown="ReloadstockSQLList"/>
+        <Image x:Name="SaveSQL_stock" Source="/save-512.png" Margin="270,72,490,488" MouseDown="ModifyStockSQLData" Visibility="Collapsed"/>
+        
+        <Image x:Name="btn_admin" Source="/icon-admin.png" Margin="0,429,602,83" MouseDown="Admin"/>
+        
+        <DataGrid x:Name="dataGrid_Stock" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="207,112,10,10" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        
+        <DataGrid x:Name="dataGrid_Order" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="207,112,10,10" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        
+        <DataGrid x:Name="dataGrid_Job" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="207,112,10,10" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}"/>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#FF4BA8FF" Offset="0"/>

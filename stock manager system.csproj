@@ -15,15 +15,20 @@
   <ItemGroup>
     <None Remove="2836347-200.png" />
     <None Remove="28842.png" />
+    <None Remove="832921-200.png" />
     <None Remove="CMT_c.png" />
     <None Remove="csv.png" />
     <None Remove="Exit.png" />
+    <None Remove="free-warehouse-icon-1073-thumb.png" />
+    <None Remove="icon-admin.png" />
     <None Remove="login.png" />
     <None Remove="Minimalist_info_Icon.png" />
+    <None Remove="part-time-job.png" />
     <None Remove="Reg.png" />
     <None Remove="reload-512.png" />
     <None Remove="save-512.png" />
     <None Remove="search-icon-transparent-images-vector-15.png" />
+    <None Remove="stock-management.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,15 +38,20 @@
   <ItemGroup>
     <Resource Include="2836347-200.png" />
     <Resource Include="28842.png" />
+    <Resource Include="832921-200.png" />
     <Resource Include="CMT_c.png" />
     <Resource Include="csv.png" />
     <Resource Include="Exit.png" />
+    <Resource Include="free-warehouse-icon-1073-thumb.png" />
+    <Resource Include="icon-admin.png" />
     <Resource Include="login.png" />
     <Resource Include="Minimalist_info_Icon.png" />
+    <Resource Include="part-time-job.png" />
     <Resource Include="Reg.png" />
     <Resource Include="reload-512.png" />
     <Resource Include="save-512.png" />
     <Resource Include="search-icon-transparent-images-vector-15.png" />
+    <Resource Include="stock-management.png" />
   </ItemGroup>
 
   <ItemGroup>

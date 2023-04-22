@@ -31,7 +31,11 @@ namespace stock_manager_system
             //BuildVersion.Text = $"App version = {version}";
             InitializeComponent();
             this.Show();
-            vermsg.Text = "App Version: v.1.0.0.0 Build 23087 ";
+            string[] ver = File.ReadAllLines("./Local\\version.hash");
+            foreach (string clientv in ver)
+            {
+                vermsg.Text = clientv ;
+            }
         }
         //Password protection
         static string SHA512Encrypt(string data)
