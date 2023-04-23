@@ -29,7 +29,7 @@
         <Image x:Name="btn_punches" Source="/832921-200.png" Margin="0,248,602,274" MouseDown="ShowOrderSQL"/>
         <TextBox x:Name="searchbox_punches" HorizontalAlignment="Left" Margin="508,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Height="20" GotFocus="cleartext_item" LostFocus="df_text" Visibility="Collapsed"/>
         <Image x:Name="search_punches" Margin="769,86,13,496" Source="/search-icon-transparent-images-vector-15.png" Visibility="Collapsed"/>
-        <Image x:Name="ReloadpunchesSQL" HorizontalAlignment="Left" Height="40" Margin="207,72,0,0" VerticalAlignment="Top" Width="40" Source="/reload-512.png" Visibility="Collapsed" MouseDown="ReloadItemSQLList"/>
+        <Image x:Name="ReloadpunchesSQL" HorizontalAlignment="Left" Height="40" Margin="207,72,0,0" VerticalAlignment="Top" Width="40" Source="/reload-512.png" Visibility="Collapsed" MouseDown="ReloadPunchesSQLList"/>
         <Image x:Name="SaveSQL_punches" Source="/save-512.png" Margin="270,72,490,488" MouseDown="ModifyPunchesSQLData" Visibility="Collapsed"/>
 
         <Image x:Name="btn_job" Source="/part-time-job.png" Margin="0,336,602,176" MouseDown="ShowJobSQL"/>

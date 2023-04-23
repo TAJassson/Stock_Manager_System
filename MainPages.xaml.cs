@@ -76,9 +76,6 @@ namespace stock_manager_system
                 dataGrid_Stock.Visibility = Visibility.Collapsed;
                 dataGrid_Job.Visibility = Visibility.Collapsed;
 
-                ReloadItemSQL.Visibility = Visibility.Collapsed;
-                SaveSQL_Item.Visibility = Visibility.Collapsed;
-
                 ReloadstockSQL.Visibility = Visibility.Collapsed;
                 SaveSQL_stock.Visibility = Visibility.Collapsed;
 
@@ -139,9 +136,6 @@ namespace stock_manager_system
 
                 ReloadItemSQL.Visibility = Visibility.Collapsed;
                 SaveSQL_Item.Visibility = Visibility.Collapsed;
-
-                ReloadstockSQL.Visibility = Visibility.Collapsed;
-                SaveSQL_stock.Visibility = Visibility.Collapsed;
 
                 ReloadjobSQL.Visibility = Visibility.Collapsed;
                 SaveSQL_job.Visibility = Visibility.Collapsed;
@@ -209,8 +203,6 @@ namespace stock_manager_system
 
                 ReloadjobSQL.Visibility = Visibility.Collapsed;
                 SaveSQL_job.Visibility = Visibility.Collapsed;
-                ReloadpunchesSQL.Visibility = Visibility.Collapsed;
-                SaveSQL_punches.Visibility = Visibility.Collapsed;
             }
 
             XmlDocument doc = new XmlDocument();
@@ -270,9 +262,6 @@ namespace stock_manager_system
 
                 ReloadstockSQL.Visibility = Visibility.Collapsed;
                 SaveSQL_stock.Visibility = Visibility.Collapsed;
-
-                ReloadjobSQL.Visibility = Visibility.Collapsed;
-                SaveSQL_job.Visibility = Visibility.Collapsed;
                 ReloadpunchesSQL.Visibility = Visibility.Collapsed;
                 SaveSQL_punches.Visibility = Visibility.Collapsed;
             }
@@ -333,7 +322,7 @@ namespace stock_manager_system
             }
             else
             {
-                MessageBox.Show("");
+                MessageBox.Show("Missing Tutorial File!!!!" , "Company management system", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         //StartPDF
@@ -418,95 +407,33 @@ namespace stock_manager_system
                 con.Close();
             }
         }
-        //ReloadSQLButton
-        //SaveButton
-        private async void ModifyPunchesSQLData(object sender, MouseButtonEventArgs e)
+        private async void ReloadPunchesSQLList(object sender, MouseButtonEventArgs e)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load("config.xml");
             XmlNode connectionStringNode = doc.SelectSingleNode("//ClientSetting//Database/ConnectionString");
             string connectionString = connectionStringNode.InnerText;
 
-            dataGrid_Order.CanUserSortColumns = false;  // 暫停排序功能
-
             using (SQLiteConnection con = new SQLiteConnection($"Data Source={connectionString};Version=3;"))
             {
                 await con.OpenAsync();
 
-                foreach (DataRowView row in dataGrid_Order.ItemsSource)
+                using (SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM Punches", con))
                 {
-                    string ItemSN = row["ItemSN"].ToString();
-
-                    // 檢查資料庫中是否已存在相同的 ItenSN
-                    using (SQLiteCommand checkCmd = new SQLiteCommand("SELECT * FROM item WHERE Punches = @ItemSN", con))
+                    using (SQLiteDataReader reader = (SQLiteDataReader)await cmd.ExecuteReaderAsync())
                     {
-                        checkCmd.Parameters.AddWithValue("@ItemSN", ItemSN);
-                        using (SQLiteDataReader reader = await checkCmd.ExecuteReaderAsync() as SQLiteDataReader)
-                        {
-                            if (reader.Read())
-                            {
-                                // 資料庫中已經存在相同的 ItenSN，檢查是否需要更新
-                                string ItemName = row["ItemName"].ToString();
-                                string ItemType = row["ItemType"].ToString();
-                                string ItemModel = row["ItemModel"].ToString();
-                                string ItemCount = row["ItemCount"].ToString();
-                                string PunchesOrderNumber = row["PunchesOrderNumber"].ToString();
-                                string OrderStatus = row["OrderStatus"].ToString();
-
-                                bool shouldUpdate = false;
-
-                                if (!reader["ItemName"].ToString().Equals(ItemName)
-                                    || !reader["ItemType"].ToString().Equals(ItemType)
-                                    || !reader["ItemModel"].ToString().Equals(ItemModel)
-                                    || !reader["ItemCount"].ToString().Equals(ItemCount)
-                                    || !reader["PunchesOrderNumber"].ToString().Equals(PunchesOrderNumber)
-                                    || !reader["OrderStatus"].ToString().Equals(OrderStatus)
-                                    || !reader["ItemSN"].ToString().Equals(OrderStatus))
-                                {
-                                    shouldUpdate = true;
-                                }
-
-                                if (shouldUpdate)
-                                {
-                                    using (SQLiteCommand cmd = new SQLiteCommand("UPDATE Punches SET ItemName = @ItemName, ItemType = @ItemType, ItemModel = @ItemModel, ItemCount = @ItemCount, PunchesOrderNumber = @PunchesOrderNumber , OrderStatus = @OrderStatus ,WHERE ItemSN = @ItemSN", con))
-                                    {
-                                        cmd.Parameters.AddWithValue("@ItemName", ItemName);
-                                        cmd.Parameters.AddWithValue("@ItemType", ItemType);
-                                        cmd.Parameters.AddWithValue("@ItemModel", ItemModel);
-                                        cmd.Parameters.AddWithValue("@ItemCount", ItemCount);
-                                        cmd.Parameters.AddWithValue("@PunchesOrderNumber", PunchesOrderNumber);
-                                        cmd.Parameters.AddWithValue("@OrderStatus", OrderStatus);
-                                        cmd.Parameters.AddWithValue("@ItemSN", ItemSN);
-                                        await cmd.ExecuteNonQueryAsync();
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO item (ItemName, ItemType, ItemModel, ItemStatus, ItemSN, Client) VALUES (@ItemName, @ItemType, @ItemModel, @ItemStatus, @ItemSN, @Client)", con))
-                                {
-                                    cmd.Parameters.AddWithValue("@ItemName", row["ItemName"].ToString());
-                                    cmd.Parameters.AddWithValue("@ItemType", row["ItemType"].ToString());
-                                    cmd.Parameters.AddWithValue("@ItemModel", row["ItemModel"].ToString());
-                                    cmd.Parameters.AddWithValue("@ItemCount", row["ItemCount"].ToString());
-                                    cmd.Parameters.AddWithValue("@PunchesOrderNumber", row["PunchesOrderNumber"].ToString());
-                                    cmd.Parameters.AddWithValue("@OrderStatus", row["OrderStatus"].ToString());
-                                    cmd.Parameters.AddWithValue("@ItemSN", ItemSN);
-                                    await cmd.ExecuteNonQueryAsync();
-                                }
-                            }
-                        }
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(reader);
+                        reader.Close();
+                        dataGrid_Job.ItemsSource = dataTable.DefaultView;
                     }
                 }
-
                 con.Close();
             }
-
-            dataGrid_Order.CanUserSortColumns = true;
-            ShowOrderSQL(null, null);
-            dataGrid_Order.Visibility = Visibility.Visible;
         }
+        //ReloadSQLButton
 
+        //SaveButton
         private async void ModifyStockSQLData(object sender, MouseButtonEventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -531,7 +458,6 @@ namespace stock_manager_system
                         {
                             if (reader.Read())
                             {
-                                // 資料庫中已經存在相同的 ItenSN，檢查是否需要更新
                                 string Client = row["Client"].ToString();
                                 string ItemName = row["ItemName"].ToString();
                                 string ItemModel = row["ItemModel"].ToString();
@@ -586,11 +512,93 @@ namespace stock_manager_system
                 con.Close();
             }
 
-            dataGrid_Stock.CanUserSortColumns = true;  // 恢復排序功能
-            ShowStockSQL(null, null); //重新加載數據
+            dataGrid_Stock.CanUserSortColumns = true; 
+            ShowStockSQL(null, null); 
             dataGrid_Stock.Visibility = Visibility.Visible;
         }
+        private async void ModifyPunchesSQLData(object sender, MouseButtonEventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("config.xml");
+            XmlNode connectionStringNode = doc.SelectSingleNode("//ClientSetting//Database/ConnectionString");
+            string connectionString = connectionStringNode.InnerText;
 
+            dataGrid_Order.CanUserSortColumns = false;
+
+            using (SQLiteConnection con = new SQLiteConnection($"Data Source={connectionString};Version=3;"))
+            {
+                await con.OpenAsync();
+
+                foreach (DataRowView row in dataGrid_Order.ItemsSource)
+                {
+                    string ItemSN = row["ItemSN"].ToString();
+
+                    using (SQLiteCommand checkCmd = new SQLiteCommand("SELECT * FROM Punches WHERE ItemSN = @ItemSN", con))
+                    {
+                        checkCmd.Parameters.AddWithValue("@ItemSN", ItemSN);
+                        using (SQLiteDataReader reader = await checkCmd.ExecuteReaderAsync() as SQLiteDataReader)
+                        {
+                            if (reader.Read())
+                            {
+                                string ItemName = row["ItemName"].ToString();
+                                string ItemType = row["ItemType"].ToString();
+                                string ItemModel = row["ItemModel"].ToString();
+                                string ItemCount = row["ItemCount"].ToString();
+                                string PunchesOrderNumber = row["PunchesOrderNumber"].ToString();
+                                string OrderStatus = row["OrderStatus"].ToString();
+                                bool shouldUpdate = false;
+
+                                if (!reader["ItemName"].ToString().Equals(ItemName)
+                                    || !reader["ItemType"].ToString().Equals(ItemType)
+                                    || !reader["ItemModel"].ToString().Equals(ItemModel)
+                                    || !reader["ItemCount"].ToString().Equals(ItemCount)
+                                    || !reader["PunchesOrderNumber"].ToString().Equals(PunchesOrderNumber)
+                                    || !reader["OrderStatus"].ToString().Equals(OrderStatus)
+                                   || !reader["ItemSN"].ToString().Equals(ItemSN))
+                                {
+                                    shouldUpdate = true;
+                                }
+
+                                if (shouldUpdate)
+                                {
+                                    using (SQLiteCommand cmd = new SQLiteCommand("UPDATE Punches SET ItemName = @ItemName, ItemType = @ItemType, ItemModel = @ItemModel, ItemCount = @ItemCount, PunchesOrderNumber = @PunchesOrderNumber , OrderStatus = @OrderStatus ,WHERE ItemSN = @ItemSN", con))
+                                    {
+                                        cmd.Parameters.AddWithValue("@ItemName", ItemName);
+                                        cmd.Parameters.AddWithValue("@ItemType", ItemType);
+                                        cmd.Parameters.AddWithValue("@ItemModel", ItemModel);
+                                        cmd.Parameters.AddWithValue("@ItemCount", ItemCount);
+                                        cmd.Parameters.AddWithValue("@PunchesOrderNumber", PunchesOrderNumber);
+                                        cmd.Parameters.AddWithValue("@OrderStatus", OrderStatus);
+                                        cmd.Parameters.AddWithValue("@ItemSN", ItemSN);
+                                        await cmd.ExecuteNonQueryAsync();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Punches (ItemName, ItemType, ItemModel, ItemCount, PunchesOrderNumber, OrderStatus, ItemSN) VALUES (@ItemName, @ItemType, @ItemModel, @ItemCount, @PunchesOrderNumber, @OrderStatus, @ItemSN)", con))
+                                {
+                                    cmd.Parameters.AddWithValue("@ItemName", row["ItemName"].ToString());
+                                    cmd.Parameters.AddWithValue("@ItemType", row["ItemType"].ToString());
+                                    cmd.Parameters.AddWithValue("@ItemModel", row["ItemModel"].ToString());
+                                    cmd.Parameters.AddWithValue("@ItemCount", row["ItemCount"].ToString());
+                                    cmd.Parameters.AddWithValue("@PunchesOrderNumber", row["PunchesOrderNumber"].ToString());
+                                    cmd.Parameters.AddWithValue("@OrderStatus", row["OrderStatus"].ToString());
+                                    cmd.Parameters.AddWithValue("@ItemSN", ItemSN);
+                                    await cmd.ExecuteNonQueryAsync();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                con.Close();
+            }
+
+            dataGrid_Order.CanUserSortColumns = true;
+            ShowOrderSQL(null, null);
+            dataGrid_Order.Visibility = Visibility.Visible;
+        }
         private async void ModifyItemSQLData(object sender, RoutedEventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -598,7 +606,7 @@ namespace stock_manager_system
             XmlNode connectionStringNode = doc.SelectSingleNode("//ClientSetting//Database/ConnectionString");
             string connectionString = connectionStringNode.InnerText;
 
-            dataGrid_Item.CanUserSortColumns = false;  // 暫停排序功能
+            dataGrid_Item.CanUserSortColumns = false; 
 
             using (SQLiteConnection con = new SQLiteConnection($"Data Source={connectionString};Version=3;"))
             {
@@ -668,11 +676,10 @@ namespace stock_manager_system
                 con.Close();
             }
 
-            dataGrid_Item.CanUserSortColumns = true;  // 恢復排序功能
-            ShowItemSQL(null, null); //重新加載數據
+            dataGrid_Item.CanUserSortColumns = true;  
+            ShowItemSQL(null, null); 
             dataGrid_Item.Visibility = Visibility.Visible;
         }
-
         private async void ModifyJobDBSQLData(object sender, MouseButtonEventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -680,7 +687,7 @@ namespace stock_manager_system
             XmlNode connectionStringNode = doc.SelectSingleNode("//ClientSetting//Database/ConnectionString");
             string connectionString = connectionStringNode.InnerText;
 
-            dataGrid_Job.CanUserSortColumns = false;  // 暫停排序功能
+            dataGrid_Job.CanUserSortColumns = false;  
 
             using (SQLiteConnection con = new SQLiteConnection($"Data Source={connectionString};Version=3;"))
             {
@@ -748,10 +755,11 @@ namespace stock_manager_system
                 con.Close();
             }
 
-            dataGrid_Item.CanUserSortColumns = true;  // 恢復排序功能
-            ShowItemSQL(null, null); //重新加載數據
-            dataGrid_Item.Visibility = Visibility.Visible;
+            dataGrid_Job.CanUserSortColumns = true; 
+            ShowJobSQL(null, null);
+            dataGrid_Job.Visibility = Visibility.Visible;
         }
+
     }
     //SaveButton
 }
