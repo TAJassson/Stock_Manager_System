@@ -9,6 +9,7 @@
 		<NetworkCredential>Disable</NetworkCredential>
 		<Username>0</Username> //Only work on Enable NetworkCredential
 		<Password>0</Password> //Only work on Enable NetworkCredential
+		<NOSQL>False</NOSQL>
 	</Database>
 	<PasswordProtectSetting>
 		<PasswordProtection>Enable</PasswordProtection>
@@ -30,4 +31,10 @@
 		<LoadMetadata>Disable</LoadMetadata>
 		<MetadataType>bin</MetadataType>
 	</METADATA>
+	<AJAX>
+		<URL>https://api-callout.cms-project.neverless.xyz</URL>
+		<Client>System.Net.HTTP</Client>
+		<Format>XML</Format>
+		<HTTPRespondReturn>False</HTTPRespondReturn>
+	</AJAX>
 </ClientSetting>
